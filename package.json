@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "figlet": "^1.11.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
