@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Auxiliary
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
 
