@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// Auxiliary
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
 
@@ -29,6 +30,6 @@ public class Auxiliary {
     // Create a header, a description and list some options
     public static int title(String header, String description) {
         System.out.println(header);
-
+        return 0;
     }
 }
