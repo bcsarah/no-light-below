@@ -1,32 +1,19 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 // Main
 public class App {
     public static void main(String[] args) {
+        // Options for Menu
+        Map<String, Runnable> options = new LinkedHashMap<>();
+        options.put("New Game", Menu::newGame);
+        options.put("Continue", Menu::continueGame);
+        options.put("Options", Menu::options);
+        options.put("Help", Menu::help);
+        options.put("Credits", Menu::credits);
+        options.put("Exit", Menu::exit);
 
         // Menu
-        int menu = Auxiliary.title(
-                "No Light Below",
-                "Credits to bcsarah@github.com",
-                new String[] { "New Game", "Continue", "Options", "Help", "Credits", "Exit" });
-
-        switch (menu) {
-            case 1: // New Game
-                System.out.println("New Game");
-                break;
-            case 2: // Continue
-                System.out.println("Continue");
-                break;
-            case 3: // Options
-                System.out.println("Options");
-                break;
-            case 4: // Help
-                System.out.println("Help");
-                break;
-            case 5: // Credits
-                System.out.println("Credits");
-                break;
-            case 6: // Exit
-                System.out.println("Exit");
-        }
-
+        Auxiliary.title("No Light Below", "Credits to bcsarah@github.com", options);
     }
 }

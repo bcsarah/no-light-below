@@ -1,6 +1,12 @@
-import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import java.io.IOException;
 import com.github.lalyos.jfiglet.FigletFont;
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
 
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
@@ -12,8 +18,8 @@ public class Auxiliary {
     }
 
     // Ask something, returning the type you want
-    public static String ask(String phrase) {
-        System.out.print(phrase);
+    public static String ask(String text) {
+        System.out.print(text);
         return scan.nextLine().strip();
     }
 
@@ -31,13 +37,25 @@ public class Auxiliary {
         try {
             return FigletFont.convertOneLine(text);
         } catch (IOException e) {
-            e.printStackTrace();
             return "";
         }
     }
 
+    // Print something and wait for a key to press
+    public static void say(String text) {
+        try {
+            Terminal terminal = TerminalBuilder.builder().system(true).build();
+            System.out.println(text);
+            terminal.enterRawMode();
+            terminal.reader().read();
+            terminal.close();
+        } catch (IOException e) {
+        }
+
+    }
+
     // Create a header, a description and list some options
-    public static int title(String header, String description, String[] options) {
+    public static void title(String header, String description, Map<String, Runnable> options) {
         while (true) {
             // Header
             clearScreen();
@@ -47,7 +65,7 @@ public class Auxiliary {
             if (description != null) {
                 String[] splitted = description.split("\n");
                 for (String line : splitted) {
-                    System.out.printf("  %s\n", line);
+                    System.out.printf("  %s\n", line); // Print line per line
                 }
                 System.out.println();
             }
@@ -55,23 +73,25 @@ public class Auxiliary {
             // Options
             if (options != null) {
                 // Show Options
-                int i = 0;
-                for (String option : options) {
-                    System.out.printf("%d -> %s\n", i + 1, option);
-                    i++;
+                int i = 1;
+                for (String option : options.keySet()) {
+                    System.out.printf("%d -> %s\n", i++, option);
                 }
-                System.out.println();
 
                 // Input
                 int input = toInteger(ask(">> "));
                 System.out.println();
+                List<String> keys = new ArrayList<>(options.keySet()); // Transform options in list
 
                 // Validate Input
-                if (input >= 1 && input <= options.length) {
-                    return input;
+                if (input >= 1 && input <= keys.size()) {
+                    String key = keys.get(input - 1); // Select the right key
+                    Runnable function = options.get(key); // Select the function
+                    function.run(); // Run the function
+                    break;
                 }
             } else {
-                return 0; // Quit if hasn't options
+                break;
             }
         }
     }
