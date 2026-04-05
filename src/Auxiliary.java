@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.Scanner;
+import com.github.lalyos.jfiglet.FigletFont;
 
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
@@ -12,7 +14,26 @@ public class Auxiliary {
     // Ask something, returning the type you want
     public static String ask(String phrase) {
         System.out.print(phrase);
-        return scan.nextLine();
+        return scan.nextLine().strip();
+    }
+
+    // Transform a string to Integer, handling possible errors
+    public static int toInteger(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    // Create a Ascii Art
+    public static String turnAscii(String text) {
+        try {
+            return FigletFont.convertOneLine(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     // Create a header, a description and list some options
@@ -20,10 +41,10 @@ public class Auxiliary {
         while (true) {
             // Header
             clearScreen();
-            System.out.printf("#  %s  #\n", header);
+            System.out.print(turnAscii(header));
 
             // Description
-            if (description != "") {
+            if (description != null) {
                 String[] splitted = description.split("\n");
                 for (String line : splitted) {
                     System.out.printf("  %s\n", line);
@@ -31,8 +52,9 @@ public class Auxiliary {
                 System.out.println();
             }
 
-            // Show Options
-            if (options.length > 0) {
+            // Options
+            if (options != null) {
+                // Show Options
                 int i = 0;
                 for (String option : options) {
                     System.out.printf("%d -> %s\n", i + 1, option);
@@ -41,7 +63,7 @@ public class Auxiliary {
                 System.out.println();
 
                 // Input
-                int input = Integer.parseInt(ask(">> "));
+                int input = toInteger(ask(">> "));
                 System.out.println();
 
                 // Validate Input

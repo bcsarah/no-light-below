@@ -4,8 +4,8 @@ public class App {
 
         // Menu
         int menu = Auxiliary.title(
-                "NO LIGHT BELOW",
-                "Welcome to the BEST CLI RPG!\nGo on and pick a option.",
+                "No Light Below",
+                "Credits to bcsarah@github.com",
                 new String[] { "New Game", "Continue", "Options", "Help", "Credits", "Exit" });
 
         switch (menu) {
