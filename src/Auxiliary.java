@@ -21,14 +21,9 @@ public class Auxiliary {
         return Double.parseDouble(input);
     }
 
-    // Ascii art
-    // public static String asciiArt(String prompt) {
-    // return FigletFont.convertOneLine(prompt);
-    // }
-
     // Create a header, a description and list some options
-    public static int title(String header, String description) {
-        System.out.println(header);
-        return 0;
+    public static void title(String header, String description) {
+        System.out.printf("#  %s  #", header);
+        System.out.printf("  %s", description);
     }
 }

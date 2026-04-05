@@ -1,2 +1,10 @@
+# Build / Compiled
 bin/
 *.class
+target/
+
+# IDE
+.project
+.classpath
+.settings/
+
