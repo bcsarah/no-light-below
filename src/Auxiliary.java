@@ -50,6 +50,7 @@ public class Auxiliary {
             terminal.reader().read();
             terminal.close();
         } catch (IOException e) {
+            return;
         }
 
     }
