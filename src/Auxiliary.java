@@ -9,21 +9,48 @@ public class Auxiliary {
         System.out.flush();
     }
 
-    // Ask something, returning String or double
+    // Ask something, returning the type you want
     public static String ask(String phrase) {
         System.out.print(phrase);
         return scan.nextLine();
     }
 
-    public static double askDouble(String phrase) {
-        System.out.println(phrase);
-        String input = scan.nextLine();
-        return Double.parseDouble(input);
-    }
-
     // Create a header, a description and list some options
-    public static void title(String header, String description) {
-        System.out.printf("#  %s  #", header);
-        System.out.printf("  %s", description);
+    public static int title(String header, String description, String[] options) {
+        while (true) {
+            // Header
+            clearScreen();
+            System.out.printf("#  %s  #\n", header);
+
+            // Description
+            if (description != "") {
+                String[] splitted = description.split("\n");
+                for (String line : splitted) {
+                    System.out.printf("  %s\n", line);
+                }
+                System.out.println();
+            }
+
+            // Show Options
+            if (options.length > 0) {
+                int i = 0;
+                for (String option : options) {
+                    System.out.printf("%d -> %s\n", i + 1, option);
+                    i++;
+                }
+                System.out.println();
+
+                // Input
+                int input = Integer.parseInt(ask(">> "));
+                System.out.println();
+
+                // Validate Input
+                if (input >= 1 && input <= options.length) {
+                    return input;
+                }
+            } else {
+                return 0; // Quit if hasn't options
+            }
+        }
     }
 }

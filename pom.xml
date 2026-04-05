@@ -33,6 +33,7 @@
                     <classpathScope>compile</classpathScope>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
