@@ -10,11 +10,13 @@ import org.jline.terminal.TerminalBuilder;
 
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
+    static String textColor = "\033[31m";
 
     // Clear terminal screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+        System.out.print(textColor);
     }
 
     // Ask something, returning the type you want
@@ -56,7 +58,7 @@ public class Auxiliary {
     }
 
     // Create a header, a description and list some options
-    public static void title(String header, String description, Map<String, Runnable> options) {
+    public static int title(String header, String description, Map<String, Runnable> options) {
         while (true) {
             // Header
             clearScreen();
@@ -88,11 +90,13 @@ public class Auxiliary {
                 if (input >= 1 && input <= keys.size()) {
                     String key = keys.get(input - 1); // Select the right key
                     Runnable function = options.get(key); // Select the function
+                    if (function == null) {
+                        return input;
+                    }
                     function.run(); // Run the function
-                    break;
                 }
             } else {
-                break;
+                return 0;
             }
         }
     }

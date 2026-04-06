@@ -1,19 +1,21 @@
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
-// Main
+// App
 public class App {
-    public static void main(String[] args) {
-        // Options for Menu
+    // Show menu
+    public static void showMenu() {
+        // Make and show options for Menu
         Map<String, Runnable> options = new LinkedHashMap<>();
-        options.put("New Game", Menu::newGame);
-        options.put("Continue", Menu::continueGame);
-        options.put("Options", Menu::options);
-        options.put("Help", Menu::help);
-        options.put("Credits", Menu::credits);
-        options.put("Exit", Menu::exit);
+        options.put("Play", Play::playGame);
+        options.put("Options", Options::showOptions);
+        options.put("Exit", null);
 
-        // Menu
         Auxiliary.title("No Light Below", "Credits to bcsarah@github.com", options);
+    }
+
+    // Main
+    public static void main(String[] args) {
+        showMenu();
     }
 }
