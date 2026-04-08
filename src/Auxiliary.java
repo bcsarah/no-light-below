@@ -1,5 +1,7 @@
 import java.util.Scanner;
+import java.util.Random;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,9 @@ import org.jline.terminal.TerminalBuilder;
 
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
+
     static String textColor = "\033[31m";
+    static boolean debugMode = true;
 
     // Clear terminal screen
     public static void clearScreen() {
@@ -90,14 +94,25 @@ public class Auxiliary {
                 if (input >= 1 && input <= keys.size()) {
                     String key = keys.get(input - 1); // Select the right key
                     Runnable function = options.get(key); // Select the function
-                    if (function == null) {
+                    if (function == null)
                         return input;
-                    }
                     function.run(); // Run the function
                 }
             } else {
                 return 0;
             }
         }
+    }
+
+    // Roll
+    public static int roll(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(min, max + 1);
+    }
+
+    // Debug
+    public static void debug(String text) {
+        if (debugMode == true)
+            System.out.println(text);
     }
 }

@@ -27,6 +27,7 @@ public class Options {
         options.put("Magenta", null);
         options.put("Back", Options::showOptions);
 
+        // Changes color by the input
         int color = Auxiliary.title("TextColor", null, options);
         switch (color) {
             case 1 -> Auxiliary.textColor = "\033[37m"; // White
