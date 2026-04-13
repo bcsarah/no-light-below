@@ -2,6 +2,7 @@
 bin/
 *.class
 target/
+test/
 
 # IDE
 .project
