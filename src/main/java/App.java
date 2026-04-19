@@ -9,9 +9,15 @@ public class App {
         Map<String, Runnable> options = new LinkedHashMap<>();
         options.put("Play", Play::playGame);
         options.put("Options", Options::showOptions);
-        options.put("Exit", null);
+        options.put("Exit", App::exit);
+        options.put("Test", Test::test);
 
         Auxiliary.title("No Light Below", "Credits to bcsarah@github.com", options);
+    }
+
+    // Quit the application
+    public static void exit() {
+        System.exit(0);
     }
 
     // Main

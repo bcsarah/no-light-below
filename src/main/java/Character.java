@@ -2,16 +2,14 @@
 public class Character {
     // Variables
     String name, race;
-    int health, maxHealth, mana, maxMana;
+    int health, maxHealth;
     int minDmg, maxDmg;
 
     // Constructor
-    public Character(String name, int health, int mana, int minDmg, int maxDmg) {
+    public Character(String name, int health, int minDmg, int maxDmg) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
-        this.mana = mana;
-        this.maxMana = mana;
         this.minDmg = minDmg;
         this.maxDmg = maxDmg;
     }
@@ -44,7 +42,7 @@ public class Character {
         }
     }
 
-    public boolean isAlive(int health) {
+    public boolean isAlive() {
         return 0 > this.health;
     }
 }
