@@ -2,10 +2,10 @@
 public class Battle {
     // Automatic battle
     public static void battle(Character hero, Character enemy) {
+
         while (hero.isAlive() && enemy.isAlive()) {
-            String heroDesc = hero.name + " -> " + hero.health + "/" + hero.maxHealth;
-            String enemyDesc = enemy.name + " -> " + enemy.health + "/" + enemy.maxHealth;
-            String description = heroDesc + "\n" + enemyDesc;
+            String description = hero.name + " -> " + hero.health + "/" + hero.maxHealth + "\n"
+                    + enemy.name + " -> " + enemy.health + "/" + enemy.maxHealth;
 
             Auxiliary.title("Battle!", description, null);
 

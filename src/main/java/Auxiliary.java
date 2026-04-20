@@ -49,8 +49,16 @@ public class Auxiliary {
 
     // Print something and wait for a key to press
     public static void say(String text) {
-        System.out.print(text);
-        scan.nextLine();
+        try {
+            Terminal terminal = TerminalBuilder.builder().system(true).build();
+            System.out.println(text);
+            terminal.enterRawMode();
+            terminal.reader().read();
+            terminal.close();
+        } catch (IOException e) {
+            return;
+        }
+
     }
 
     // Create a header, a description and list some options

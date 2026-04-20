@@ -1,4 +1,4 @@
-// Player
+// Character
 public class Character {
     // Variables
     String name, race;
@@ -43,6 +43,6 @@ public class Character {
     }
 
     public boolean isAlive() {
-        return 0 > this.health;
+        return this.health > 0;
     }
 }
