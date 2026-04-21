@@ -1,22 +1,28 @@
 // Battle
 public class Battle {
     // Automatic battle
-    public static void battle(Character hero, Character enemy) {
+    public static void battle(Player hero, Enemy enemy) {
+        boolean heroTurn = true;
+        int initiative = Auxiliary.roll(hero.getDexterity(), 20);
+        if (initiative < 8) {
+            heroTurn = !heroTurn;
+        }
 
         while (hero.isAlive() && enemy.isAlive()) {
-            String description = hero.name + " -> " + hero.health + "/" + hero.maxHealth + "\n"
-                    + enemy.name + " -> " + enemy.health + "/" + enemy.maxHealth;
+            String description = hero.getName() + " -> " + hero.getHealth() + "/" + hero.getMaxHealth() + "\n"
+                    + enemy.getName() + " -> " + enemy.getHealth() + "/" + enemy.getMaxHealth();
 
             Auxiliary.title("Battle!", description, null);
 
-            int roll = Auxiliary.roll(1, 20);
-            if (roll >= 10) {
-                Auxiliary.say("You start!\n");
+            if (heroTurn) {
+                Auxiliary.say(hero.getName() + "'s turn!\n");
                 hero.attack(enemy);
             } else {
-                Auxiliary.say("Your enemy starts!\n");
+                Auxiliary.say(enemy.getName() + "'s turn!\n");
                 enemy.attack(hero);
             }
+
+            heroTurn = !heroTurn;
         }
 
         if (!enemy.isAlive()) {

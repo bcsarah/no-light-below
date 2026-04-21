@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import org.jline.terminal.TerminalBuilder;
 
 public class Auxiliary {
     static Scanner scan = new Scanner(System.in);
-
+    static Random random = new Random();
     static String textColor = "\033[31m";
     static boolean debugMode = true;
 
@@ -21,12 +20,6 @@ public class Auxiliary {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.print(textColor);
-    }
-
-    // Ask something, returning the type you want
-    public static String ask(String text) {
-        System.out.print(text);
-        return scan.nextLine().strip();
     }
 
     // Transform a string to Integer, handling possible errors
@@ -86,7 +79,8 @@ public class Auxiliary {
                 }
 
                 // Input
-                int input = toInteger(ask(">> "));
+                System.out.print(">> ");
+                int input = toInteger(scan.nextLine());
                 System.out.println();
                 List<String> keys = new ArrayList<>(options.keySet()); // Transform options in list
 
@@ -105,8 +99,17 @@ public class Auxiliary {
     }
 
     // Roll
-    public static int roll(int min, int max) {
-        Random random = new Random();
+    public static int roll(int dices, int faces) {
+        int maxRoll = 0;
+        for (int i = 0; i < dices; i++) {
+            int roll = random.nextInt(1, faces + 1);
+            if (roll > maxRoll)
+                maxRoll = roll;
+        }
+        return maxRoll;
+    }
+
+    public static int randomInt(int min, int max) {
         return random.nextInt(min, max + 1);
     }
 
