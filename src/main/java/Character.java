@@ -1,4 +1,3 @@
-// Character
 public class Character {
     // Variables
     private String name;
@@ -111,32 +110,36 @@ public class Character {
         this.maxDmg = maxDmg;
     }
 
-    // Methods
-    public void attack(Character enemy) {
-        Auxiliary.say(this.getName() + " tryes to attack " + enemy.getName() + "...");
-        int roll = Auxiliary.roll(getStrength(), 20); // Roll a dice
+    // Attack a target
+    public void attack(Character target) {
+        Auxiliary.say(this.getName() + " tryes to attack " + target.getName() + "...");
+        int roll = Auxiliary.roll(getStrength(), 20); // Hit dice
 
-        // Hits
-        if (roll >= enemy.getArmorClass()) {
-            Auxiliary.say(this.getName() + " hits " + enemy.getName() + "!\n");
+        // Hit
+        if (roll >= target.getArmorClass()) {
+            Auxiliary.say(this.getName() + " hits " + target.getName() + "!\n");
 
+            // Damage
             int dmg = Auxiliary.randomInt(this.getMinDmg(), this.getMaxDmg()) + this.getStrength();
             if (roll == 20) { // Critical hit
-                Auxiliary.say("It's a Critical Hit! Your damage is doubled!");
+                Auxiliary.say("It's a Critical Hit! Damage is doubled!");
                 dmg *= 2;
             }
 
-            Auxiliary.say("It causes " + dmg + " of damage!");
-            enemy.takeDamage(dmg);
+            Auxiliary.say("It causes " + dmg + " damage!");
+            target.takeDamage(dmg);
         } else {
+            // Miss
             Auxiliary.say(this.getName() + " misses!\n");
         }
     }
 
+    // Check if the Character is alive (health > 0)
     public boolean isAlive() {
         return this.getHealth() > 0;
     }
 
+    // Take damage and check if health is < 0
     public void takeDamage(int dmg) {
         int newHealth = this.getHealth() - dmg;
         if (newHealth < 0)
@@ -144,6 +147,7 @@ public class Character {
         this.setHealth(newHealth);
     }
 
+    // Heal hp and check if health is > max
     public void heal(int amount) {
         int newHealth = this.getHealth() + amount;
         if (newHealth > this.getMaxHealth())

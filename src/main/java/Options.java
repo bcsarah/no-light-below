@@ -1,21 +1,20 @@
 import java.util.Map;
 import java.util.LinkedHashMap;
 
-// Options
 public class Options {
     // Show options
     public static void showOptions() {
-        // Make and show options for Options
         Map<String, Runnable> options = new LinkedHashMap<>();
         options.put("Text Color", Options::changeTextColor);
         options.put("Help", Options::showHelp);
         options.put("Credits", Options::showCredits);
         options.put("Back", App::showMenu);
 
+        // Make and show options for Options
         Auxiliary.title("Options", null, options);
     }
 
-    // Change some colors to change the text color
+    // Change the text color (completly ui)
     public static void changeTextColor() {
         Map<String, Runnable> options = new LinkedHashMap<>();
         options.put("White", null);
@@ -41,11 +40,11 @@ public class Options {
         changeTextColor();
     }
 
-    // Show instructions to help new users
+    // Show instructions for new users
     public static void showHelp() {
     }
 
-    // Show the game credits
+    // Show the game credits (me and me)
     public static void showCredits() {
     }
 }

@@ -10,6 +10,7 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 public class Auxiliary {
+    // Globals
     static Scanner scan = new Scanner(System.in);
     static Random random = new Random();
     static String textColor = "\033[31m";

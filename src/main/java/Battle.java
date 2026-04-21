@@ -1,4 +1,3 @@
-// Battle
 public class Battle {
     // Automatic battle
     public static void battle(Player hero, Enemy enemy) {
