@@ -1,23 +1,22 @@
 public class Character {
-    // Variables
-    private String name;
-    private int health, maxHealth, mana, maxMana, ac;
-    private int str, dex, wis;
-    private int minDmg, maxDmg;
+    protected String name;
+    protected int health, maxHealth, mana, maxMana, ac, str, dex, wis;
+    protected Weapon weapon;
+    protected Armor armor;
 
     // Constructor
-    public Character(String name, int health, int mana, int str, int dex, int wis, int minDmg, int maxDmg) {
+    public Character(String name, int health, int mana, int str, int dex, int wis, Weapon weapon, Armor armor) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
         this.mana = mana;
         this.maxMana = mana;
-        this.ac = 10 + dex;
+        this.ac = armor.baseAc + dex;
         this.str = str;
         this.dex = dex;
         this.wis = wis;
-        this.minDmg = minDmg;
-        this.maxDmg = maxDmg;
+        this.weapon = weapon;
+        this.armor = armor;
     }
 
     // Getters
@@ -57,19 +56,7 @@ public class Character {
         return wis;
     }
 
-    public int getMinDmg() {
-        return minDmg;
-    }
-
-    public int getMaxDmg() {
-        return maxDmg;
-    }
-
     // Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setHealth(int health) {
         this.health = health;
     }
@@ -102,25 +89,17 @@ public class Character {
         this.wis = wis;
     }
 
-    public void setMinDmg(int minDmg) {
-        this.minDmg = minDmg;
-    }
-
-    public void setMaxDmg(int maxDmg) {
-        this.maxDmg = maxDmg;
-    }
-
     // Attack a target
     public void attack(Character target) {
-        Auxiliary.say(this.getName() + " tryes to attack " + target.getName() + "...");
-        int roll = Auxiliary.roll(getStrength(), 20); // Hit dice
+        Auxiliary.say(name + " tryes to attack " + target.getName() + "...");
+        int roll = Auxiliary.roll(str, 20); // Hit dice
 
         // Hit
-        if (roll >= target.getArmorClass()) {
-            Auxiliary.say(this.getName() + " hits " + target.getName() + "!\n");
+        if (roll >= ac) {
+            Auxiliary.say(name + " hits " + target.getName() + "!\n");
 
             // Damage
-            int dmg = Auxiliary.randomInt(this.getMinDmg(), this.getMaxDmg()) + this.getStrength();
+            int dmg = Auxiliary.randomInt(weapon.getMinDmg(), weapon.getMaxDmg()) + str;
             if (roll == 20) { // Critical hit
                 Auxiliary.say("It's a Critical Hit! Damage is doubled!");
                 dmg *= 2;
@@ -136,12 +115,12 @@ public class Character {
 
     // Check if the Character is alive (health > 0)
     public boolean isAlive() {
-        return this.getHealth() > 0;
+        return health > 0;
     }
 
     // Take damage and check if health is < 0
     public void takeDamage(int dmg) {
-        int newHealth = this.getHealth() - dmg;
+        int newHealth = health - dmg;
         if (newHealth < 0)
             newHealth = 0;
         this.setHealth(newHealth);
@@ -149,9 +128,29 @@ public class Character {
 
     // Heal hp and check if health is > max
     public void heal(int amount) {
-        int newHealth = this.getHealth() + amount;
-        if (newHealth > this.getMaxHealth())
-            newHealth = this.getMaxHealth();
+        int newHealth = health + amount;
+        if (newHealth > maxHealth)
+            newHealth = maxHealth;
         this.setHealth(newHealth);
+    }
+
+    // Show the character sheet
+    public void showSheet() {
+        String description =
+        name + "\n\n" +
+
+        "HP: " + health + "/" + maxHealth + "\n" +
+        "MP: " + mana + "/" + maxMana + "\n" + 
+        "AC: " + ac +  " (" + armor.getBaseAc() + " + " + dex + ")" + "\n\n" + 
+
+        "STR: " + str + "\n" +
+        "DEX: " + dex + "\n" +
+        "WIS: " + wis + "\n\n" +
+
+        "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + ") " + weapon.skill.getName() + ", " +  weapon.getActionsForSkill() + " turns" + "\n" +
+        "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
+
+        Auxiliary.title("Sheet", description, null);
+        Auxiliary.scan.nextLine();
     }
 }
