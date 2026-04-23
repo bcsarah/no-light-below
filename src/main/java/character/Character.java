@@ -1,11 +1,12 @@
 public class Character {
     protected String name;
-    protected int health, maxHealth, mana, maxMana, ac, str, dex, wis;
+    protected int health, maxHealth, mana, maxMana, ac;
+    protected int str, dex, wis, con;
     protected Weapon weapon;
     protected Armor armor;
 
     // Constructor
-    public Character(String name, int health, int mana, int str, int dex, int wis, Weapon weapon, Armor armor) {
+    public Character(String name, int health, int mana, int str, int dex, int wis, int con, Weapon weapon, Armor armor) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -15,6 +16,7 @@ public class Character {
         this.str = str;
         this.dex = dex;
         this.wis = wis;
+        this.con = con;
         this.weapon = weapon;
         this.armor = armor;
     }
@@ -56,6 +58,10 @@ public class Character {
         return wis;
     }
 
+    public int getConstitution() {
+        return con;
+    }
+
     // Setters
     public void setHealth(int health) {
         this.health = health;
@@ -89,6 +95,10 @@ public class Character {
         this.wis = wis;
     }
 
+    public void setConstitution(int con) {
+        this.con= con;
+    }
+
     // Attack a target
     public void attack(Character target) {
         Auxiliary.say(name + " tryes to attack " + target.getName() + "...");
@@ -109,7 +119,7 @@ public class Character {
             target.takeDamage(dmg);
         } else {
             // Miss
-            Auxiliary.say(this.getName() + " misses!\n");
+            Auxiliary.say(name + " misses!\n");
         }
     }
 
@@ -123,7 +133,7 @@ public class Character {
         int newHealth = health - dmg;
         if (newHealth < 0)
             newHealth = 0;
-        this.setHealth(newHealth);
+        setHealth(newHealth);
     }
 
     // Heal hp and check if health is > max
@@ -131,7 +141,7 @@ public class Character {
         int newHealth = health + amount;
         if (newHealth > maxHealth)
             newHealth = maxHealth;
-        this.setHealth(newHealth);
+        setHealth(newHealth);
     }
 
     // Show the character sheet

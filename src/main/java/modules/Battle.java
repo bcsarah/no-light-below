@@ -10,10 +10,13 @@ public class Battle {
 
         // Loop
         while (p1.isAlive() && p2.isAlive()) {
-            String description = p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() + "\n" + p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth();
+            String description =
+            p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() + ", " + p1.getMana() + "/" + p1.getMaxMana() + "\n" +
+            p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth() + ", " + p2.getMana() + "/" + p2.getMaxMana() + "\n";
 
             Auxiliary.title("Battle!", description, null);
 
+            // Turns
             if (p1Turn) {
                 Auxiliary.say(p1.getName() + "'s turn!\n");
                 p1.attack(p2);
@@ -21,7 +24,6 @@ public class Battle {
                 Auxiliary.say(p2.getName() + "'s turn!\n");
                 p2.attack(p1);
             }
-
              p1Turn = !p1Turn;
         }
 
