@@ -8,11 +8,14 @@ public class Test {
         Weapon sword = new Weapon("Sword", 2, 6, stock, 4);
         Weapon dagger = new Weapon("Dagger", 1, 4, stock, 4);
 
-        Character sarah = new Character("Sarah", 25, 15, 2, 2, 1, sword, iron);
-        Character goblin = new Character("Goblin", 10, 5, 2, 1, 0, dagger, leather);
+        Player sarah = new Player("Sarah", 25, 15, 2, 2, 1, 1, 2, sword, iron, 0, 1);
+        Enemy goblin = new Enemy("Goblin", 10, 5, 2, 1, 0, 1, dagger, leather, 1);
         sarah.showSheet();
         goblin.showSheet();
 
         Battle.battle(sarah, goblin);
+
+        sarah.showSheet();
+        goblin.showSheet();
     }
 }

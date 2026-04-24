@@ -3,8 +3,15 @@ public class Battle {
     public static void battle(Character p1, Character p2) {
         // Initative
         boolean p1Turn = true;
+        int td = 8 + p2.getDexterity();
+        Auxiliary.say("Rolling initiative... (TD " + td + ")");
+
         int initiative = Auxiliary.roll(p1.getDexterity(), 20);
-        if (initiative < 8) {
+
+        if (initiative >= td) { // p1
+            Auxiliary.say(p1.getName() + " starts!");
+        } else { // p2
+            Auxiliary.say(p2.getName() + " starts!");
             p1Turn = !p1Turn;
         }
 

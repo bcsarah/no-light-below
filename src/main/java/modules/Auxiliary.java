@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Auxiliary {
     static Random random = new Random();
     static String textColor = "\033[31m";
     static boolean debugMode = true;
+    static boolean showRolls = true;
 
     // Clear terminal screen
     public static void clearScreen() {
@@ -43,16 +45,8 @@ public class Auxiliary {
 
     // Print something and wait for a key to press
     public static void say(String text) {
-        try {
-            Terminal terminal = TerminalBuilder.builder().system(true).build();
-            System.out.println(text);
-            terminal.enterRawMode();
-            terminal.reader().read();
-            terminal.close();
-        } catch (IOException e) {
-            return;
-        }
-
+        System.out.print(text);
+        scan.nextLine();
     }
 
     // Create a header, a description and list some options
@@ -101,17 +95,24 @@ public class Auxiliary {
 
     // Roll
     public static int roll(int dices, int faces) {
-        int maxRoll = 0;
+        List<Integer> rolls = new ArrayList<>();
+
         for (int i = 0; i < dices; i++) {
             int roll = random.nextInt(1, faces + 1);
-            if (roll > maxRoll)
-                maxRoll = roll;
+            rolls.add(roll);
         }
+        int maxRoll = Collections.max(rolls);
+
+        if (showRolls)
+            Auxiliary.say(maxRoll + " <- " + rolls);
         return maxRoll;
     }
 
-    public static int randomInt(int min, int max) {
-        return random.nextInt(min, max + 1);
+    public static int rollMin2Max(int min, int max) {
+        int roll = random.nextInt(min, max + 1);
+        if (showRolls)
+            Auxiliary.say(roll + " <- " + min + " - " + max);
+        return roll;
     }
 
     // Debug

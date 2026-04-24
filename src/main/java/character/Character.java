@@ -109,7 +109,7 @@ public class Character {
             Auxiliary.say(name + " hits " + target.getName() + "!\n");
 
             // Damage
-            int dmg = Auxiliary.randomInt(weapon.getMinDmg(), weapon.getMaxDmg()) + str;
+            int dmg = Auxiliary.rollMin2Max(weapon.getMinDmg(), weapon.getMaxDmg()) + str;
             if (roll == 20) { // Critical hit
                 Auxiliary.say("It's a Critical Hit! Damage is doubled!");
                 dmg *= 2;
@@ -162,5 +162,9 @@ public class Character {
 
         Auxiliary.title("Sheet", description, null);
         Auxiliary.scan.nextLine();
+    }
+
+    public void upStatus() {
+
     }
 }
