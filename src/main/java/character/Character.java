@@ -1,12 +1,12 @@
 public class Character {
     protected String name;
     protected int health, maxHealth, mana, maxMana, ac;
-    protected int str, dex, wis, con;
+    protected int str, dex, wis, con, cha;
     protected Weapon weapon;
     protected Armor armor;
 
     // Constructor
-    public Character(String name, int health, int mana, int str, int dex, int wis, int con, Weapon weapon, Armor armor) {
+    public Character(String name, int health, int mana, int str, int dex, int wis, int con, int cha, Weapon weapon, Armor armor) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -17,6 +17,7 @@ public class Character {
         this.dex = dex;
         this.wis = wis;
         this.con = con;
+        this.cha = cha;
         this.weapon = weapon;
         this.armor = armor;
     }
@@ -62,6 +63,10 @@ public class Character {
         return con;
     }
 
+    public int getCharisma() {
+        return cha;
+    }
+
     // Setters
     public void setHealth(int health) {
         this.health = health;
@@ -96,20 +101,24 @@ public class Character {
     }
 
     public void setConstitution(int con) {
-        this.con= con;
+        this.con = con;
+    }
+
+    public void setCharisma(int cha) {
+        this.cha = cha;
     }
 
     // Attack a target
     public void attack(Character target) {
         Auxiliary.say(name + " tryes to attack " + target.getName() + "...");
-        int roll = Auxiliary.roll(str, 20); // Hit dice
+        int roll = Auxiliary.roll(str, 20, 0); // Hit dice
 
         // Hit
         if (roll >= ac) {
             Auxiliary.say(name + " hits " + target.getName() + "!\n");
 
             // Damage
-            int dmg = Auxiliary.rollMin2Max(weapon.getMinDmg(), weapon.getMaxDmg()) + str;
+            int dmg = Auxiliary.rollMin2Max(weapon.getMinDmg(), weapon.getMaxDmg(), weapon.getAttribute(this));
             if (roll == 20) { // Critical hit
                 Auxiliary.say("It's a Critical Hit! Damage is doubled!");
                 dmg *= 2;
@@ -155,16 +164,16 @@ public class Character {
 
         "STR: " + str + "\n" +
         "DEX: " + dex + "\n" +
-        "WIS: " + wis + "\n\n" +
+        "WIS: " + wis + "\n" +
+        "CON: " + con + "\n" +
+        "CHA: " + cha + "\n\n" +
 
-        "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + ") " + weapon.skill.getName() + ", " +  weapon.getActionsForSkill() + " turns" + "\n" +
+        "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + " +" + weapon.getAttribute() + ") " + weapon.skill.getName() + ", " +  weapon.getActionsForSkill() + " turns" + "\n" +
         "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
 
         Auxiliary.title("Sheet", description, null);
         Auxiliary.scan.nextLine();
     }
 
-    public void upStatus() {
-
-    }
+    public void upStatus() {}
 }

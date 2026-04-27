@@ -1,19 +1,14 @@
 public class Player extends Character {
-    protected int cha, exp, lvl;
+    protected int exp, lvl;
 
     // Constructor
     public Player(String name, int health, int mana, int str, int dex, int wis, int con, int cha, Weapon weapon, Armor armor, int exp, int lvl) {
-        super(name, health, mana, str, dex, wis, con, weapon, armor);
-        this.cha = cha;
+        super(name, health, mana, str, dex, wis, con, cha, weapon, armor);
         this.exp = exp;
         this.lvl = lvl;
     }
 
     // Getters
-    public int getCharisma() {
-        return cha;
-    }
-
     public int getExperience() {
         return exp;
     }
@@ -27,10 +22,6 @@ public class Player extends Character {
     }
 
     // Setters
-    public void setCharisma(int cha) {
-        this.cha = cha;
-    }
-
     public void setExperience(int exp) {
         this.exp = exp;
     }

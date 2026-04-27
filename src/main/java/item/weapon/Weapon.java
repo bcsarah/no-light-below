@@ -28,4 +28,12 @@ public class Weapon extends Item {
     public int getActionsForSkill() {
         return actionsForSkill;
     }
+
+    public int getAttribute(Character p) {
+        return p.getStrength();
+    }
+
+    public String getAttribute() {
+        return "STR";
+    }
 }

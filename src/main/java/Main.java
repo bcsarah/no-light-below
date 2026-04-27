@@ -7,8 +7,9 @@ public class Main {
         Map<String, Runnable> options = new LinkedHashMap<>();
         options.put("Play", Play::playGame);
         options.put("Options", Options::showOptions);
-        options.put("Exit", App::exit);
+        options.put("Exit", Main::exit);
         options.put("Test", Test::test);
+
 
         // Make and show options for Menu
         Auxiliary.title("No Light Below", "Credits to bcsarah@github.com", options);

@@ -94,7 +94,7 @@ public class Auxiliary {
     }
 
     // Roll
-    public static int roll(int dices, int faces) {
+    public static int roll(int dices, int faces, int modifier) {
         List<Integer> rolls = new ArrayList<>();
 
         for (int i = 0; i < dices; i++) {
@@ -102,17 +102,20 @@ public class Auxiliary {
             rolls.add(roll);
         }
         int maxRoll = Collections.max(rolls);
+        int modifiedMaxRoll = maxRoll + modifier;
 
         if (showRolls)
-            Auxiliary.say(maxRoll + " <- " + rolls);
-        return maxRoll;
+            Auxiliary.say(maxRoll + " <- " + rolls + " + " + modifier);
+        return modifiedMaxRoll;
     }
 
-    public static int rollMin2Max(int min, int max) {
+    public static int rollMin2Max(int min, int max, int modifier) {
         int roll = random.nextInt(min, max + 1);
+        int modifiedRoll = roll + modifier;
+
         if (showRolls)
-            Auxiliary.say(roll + " <- " + min + " - " + max);
-        return roll;
+            Auxiliary.say(modifiedRoll + " (" + roll + " + " + modifier + ")" + " <- " + min + " - " + max);
+        return modifiedRoll;
     }
 
     // Debug

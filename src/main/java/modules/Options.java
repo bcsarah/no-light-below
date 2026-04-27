@@ -8,7 +8,7 @@ public class Options {
         options.put("Text Color", Options::changeTextColor);
         options.put("Help", Options::showHelp);
         options.put("Credits", Options::showCredits);
-        options.put("Back", App::showMenu);
+        options.put("Back", Main::showMenu);
 
         // Make and show options for Options
         Auxiliary.title("Options", null, options);

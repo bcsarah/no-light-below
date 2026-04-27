@@ -6,7 +6,7 @@ public class Battle {
         int td = 8 + p2.getDexterity();
         Auxiliary.say("Rolling initiative... (TD " + td + ")");
 
-        int initiative = Auxiliary.roll(p1.getDexterity(), 20);
+        int initiative = Auxiliary.roll(p1.getDexterity(), 20, 0);
 
         if (initiative >= td) { // p1
             Auxiliary.say(p1.getName() + " starts!");
@@ -18,8 +18,8 @@ public class Battle {
         // Loop
         while (p1.isAlive() && p2.isAlive()) {
             String description =
-            p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() + ", " + p1.getMana() + "/" + p1.getMaxMana() + "\n" +
-            p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth() + ", " + p2.getMana() + "/" + p2.getMaxMana() + "\n";
+            p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() + ", " + p1.getMana() + "/" + p1.getMaxMana() + " (" + p1.getArmorClass() + ")" + "\n" +
+            p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth() + ", " + p2.getMana() + "/" + p2.getMaxMana() + " (" + p2.getArmorClass() + ")" + "\n";
 
             Auxiliary.title("Battle!", description, null);
 
