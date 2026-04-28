@@ -10,7 +10,6 @@ public class Main {
         options.put("Exit", Main::exit);
         options.put("Test", Test::test);
 
-
         // Make and show options for Menu
         Auxiliary.title("No Light Below", "Credits to bcsarah@github.com", options);
     }

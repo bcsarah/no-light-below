@@ -1,3 +1,5 @@
+package character;
+
 public class Character {
     protected String name;
     protected int health, maxHealth, mana, maxMana, ac;
@@ -6,7 +8,8 @@ public class Character {
     protected Armor armor;
 
     // Constructor
-    public Character(String name, int health, int mana, int str, int dex, int wis, int con, int cha, Weapon weapon, Armor armor) {
+    public Character(String name, int health, int mana, int str, int dex, int wis, int con, int cha, Weapon weapon,
+            Armor armor) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -155,25 +158,27 @@ public class Character {
 
     // Show the character sheet
     public void showSheet() {
-        String description =
-        name + "\n\n" +
+        String description = name + "\n\n" +
 
-        "HP: " + health + "/" + maxHealth + "\n" +
-        "MP: " + mana + "/" + maxMana + "\n" + 
-        "AC: " + ac +  " (" + armor.getBaseAc() + " + " + dex + ")" + "\n\n" + 
+                "HP: " + health + "/" + maxHealth + "\n" +
+                "MP: " + mana + "/" + maxMana + "\n" +
+                "AC: " + ac + " (" + armor.getBaseAc() + " + " + dex + ")" + "\n\n" +
 
-        "STR: " + str + "\n" +
-        "DEX: " + dex + "\n" +
-        "WIS: " + wis + "\n" +
-        "CON: " + con + "\n" +
-        "CHA: " + cha + "\n\n" +
+                "STR: " + str + "\n" +
+                "DEX: " + dex + "\n" +
+                "WIS: " + wis + "\n" +
+                "CON: " + con + "\n" +
+                "CHA: " + cha + "\n\n" +
 
-        "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + " +" + weapon.getAttribute() + ") " + weapon.skill.getName() + ", " +  weapon.getActionsForSkill() + " turns" + "\n" +
-        "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
+                "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + " +"
+                + weapon.getAttribute() + ") " + weapon.skill.getName() + ", " + weapon.getActionsForSkill() + " turns"
+                + "\n" +
+                "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
 
         Auxiliary.title("Sheet", description, null);
         Auxiliary.scan.nextLine();
     }
 
-    public void upStatus() {}
+    public void upStatus() {
+    }
 }

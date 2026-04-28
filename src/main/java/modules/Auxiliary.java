@@ -1,3 +1,5 @@
+package modules;
+
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.Random;
@@ -84,7 +86,7 @@ public class Auxiliary {
                     String key = keys.get(input - 1); // Select the right key
                     Runnable function = options.get(key); // Select the function
                     if (function == null)
-                    return input;
+                        return input;
                     function.run(); // Run the function
                 }
             } else {

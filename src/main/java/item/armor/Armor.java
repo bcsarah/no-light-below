@@ -1,3 +1,5 @@
+package item.armor;
+
 public class Armor extends Item {
     protected int baseAc;
 
