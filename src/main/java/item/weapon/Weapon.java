@@ -1,5 +1,3 @@
-package item.weapon;
-
 public class Weapon extends Item {
     protected int minDmg, maxDmg;
     protected Skill skill;

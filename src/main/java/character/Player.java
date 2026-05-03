@@ -1,5 +1,3 @@
-package character;
-
 public class Player extends Character {
     protected int exp, lvl;
 
@@ -21,7 +19,7 @@ public class Player extends Character {
     }
 
     public int getNextLevelExperience() {
-        return 100 * lvl;
+        return 125 * lvl;
     }
 
     // Setters
@@ -33,7 +31,7 @@ public class Player extends Character {
         this.lvl = lvl;
     }
 
-    // Level UP
+    // Add exp to player and check if player level up
     public void addExp(int amount) {
         exp += amount;
         while (exp >= getNextLevelExperience()) {
@@ -42,7 +40,36 @@ public class Player extends Character {
         }
     }
 
+    // Level up with status up
     public void levelUp() {
 
+    }
+
+    // Up status and check if its avaiable
+    public void upStatus() {
+    }
+
+    // Show the character sheet
+    public void showSheet() {
+        String description = name + "\n\n" +
+                "LVL: " + lvl + " (" + exp + "/" + getNextLevelExperience() + ")" + "\n\n" +
+
+                "HP: " + health + "/" + maxHealth + "\n" +
+                "MP: " + mana + "/" + maxMana + "\n" +
+                "AC: " + ac + " (" + armor.getBaseAc() + " + " + dex + ")" + "\n\n" +
+
+                "STR: " + str + "\n" +
+                "DEX: " + dex + "\n" +
+                "WIS: " + wis + "\n" +
+                "CON: " + con + "\n" +
+                "CHA: " + cha + "\n\n" +
+
+                "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + " +"
+                + weapon.getAttribute() + ") " + weapon.skill.getName() + ", " + weapon.getActionsForSkill() + " turns"
+                + "\n" +
+                "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
+
+        Auxiliary.title("Sheet", description, null);
+        Auxiliary.scan.nextLine();
     }
 }

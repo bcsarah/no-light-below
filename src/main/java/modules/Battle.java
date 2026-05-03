@@ -1,5 +1,3 @@
-package modules;
-
 public class Battle {
     // Automatic battle
     public static void battle(Character p1, Character p2) {
