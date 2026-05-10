@@ -2,9 +2,8 @@ public class Player extends Character {
     protected int exp, lvl;
 
     // Constructor
-    public Player(String name, int health, int mana, int str, int dex, int wis, int con, int cha, Weapon weapon,
-            Armor armor, int exp, int lvl) {
-        super(name, health, mana, str, dex, wis, con, cha, weapon, armor);
+    public Player(String name, int health, int str, int dex, int wis, Weapon weapon, Armor armor, int exp, int lvl) {
+        super(name, health, str, dex, wis, weapon, armor);
         this.exp = exp;
         this.lvl = lvl;
     }
@@ -55,7 +54,6 @@ public class Player extends Character {
                 "LVL: " + lvl + " (" + exp + "/" + getNextLevelExperience() + ")" + "\n\n" +
 
                 "HP: " + health + "/" + maxHealth + "\n" +
-                "MP: " + mana + "/" + maxMana + "\n" +
                 "AC: " + ac + " (" + armor.getBaseAc() + " + " + dex + ")" + "\n\n" +
 
                 "STR: " + str + "\n" +
@@ -65,8 +63,7 @@ public class Player extends Character {
                 "CHA: " + cha + "\n\n" +
 
                 "Weapon: " + weapon.getName() + " (" + weapon.getMinDmg() + " - " + weapon.getMaxDmg() + " +"
-                + weapon.getAttribute() + ") " + weapon.skill.getName() + ", " + weapon.getActionsForSkill() + " turns"
-                + "\n" +
+                + weapon.getAttribute() + ")" + "\n" +
                 "Armor: " + armor.getName() + " (" + armor.getBaseAc() + " + DEX)";
 
         Auxiliary.title("Sheet", description, null);

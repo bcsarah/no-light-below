@@ -2,8 +2,8 @@ public class Enemy extends Character {
     protected int lvl;
 
     // Constructor
-    public Enemy(String name, int health, int str, int dex, int wis, int lvl) {
-        super(name, health, str, dex, wis);
+    public Enemy(String name, int health, int str, int dex, int wis, Weapon weapon, Armor armor, int lvl) {
+        super(name, health, str, dex, wis, weapon, armor);
         this.lvl = lvl;
     }
 

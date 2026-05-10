@@ -1,15 +1,11 @@
 public class Weapon extends Item {
     protected int minDmg, maxDmg;
-    protected Skill skill;
-    protected int actionsForSkill;
 
     // Constructor
-    public Weapon(String name, int minDmg, int maxDmg, Skill skill, int actionsForSkill) {
+    public Weapon(String name, int minDmg, int maxDmg) {
         super(name);
         this.minDmg = minDmg;
         this.maxDmg = maxDmg;
-        this.skill = skill;
-        this.actionsForSkill = actionsForSkill;
     }
 
     // Getters
@@ -19,14 +15,6 @@ public class Weapon extends Item {
 
     public int getMaxDmg() {
         return maxDmg;
-    }
-
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public int getActionsForSkill() {
-        return actionsForSkill;
     }
 
     public int getAttribute(Character p) {

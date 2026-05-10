@@ -17,10 +17,9 @@ public class Battle {
 
         // Loop
         while (p1.isAlive() && p2.isAlive()) {
-            String description = p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() + ", " + p1.getMana()
-                    + "/" + p1.getMaxMana() + " (" + p1.getArmorClass() + ")" + "\n" +
-                    p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth() + ", " + p2.getMana() + "/"
-                    + p2.getMaxMana() + " (" + p2.getArmorClass() + ")" + "\n";
+            String description =
+                p1.getName() + " -> " + p1.getHealth() + "/" + p1.getMaxHealth() +  " (" + p1.getArmorClass() + ")" + "\n" +
+                p2.getName() + " -> " + p2.getHealth() + "/" + p2.getMaxHealth() + " (" + p2.getArmorClass() + ")" + "\n";
 
             Auxiliary.title("Battle!", description, null);
 

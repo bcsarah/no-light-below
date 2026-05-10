@@ -1,12 +1,12 @@
 public class Character {
     protected String name;
-    protected int health, maxHealth, mana, maxMana, ac;
+    protected int health, maxHealth, ac;
     protected int str, dex, wis, con, cha;
     protected Weapon weapon;
     protected Armor armor;
 
     // Constructor
-    public Character(String name, int health, int mana, int str, int dex, int wis) {
+    public Character(String name, int health, int str, int dex, int wis, Weapon weapon, Armor armor) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -31,14 +31,6 @@ public class Character {
 
     public int getMaxHealth() {
         return maxHealth;
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public int getMaxMana() {
-        return maxMana;
     }
 
     public int getArmorClass() {
@@ -72,14 +64,6 @@ public class Character {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-
-    public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
     }
 
     public void setArmorClass(int ac) {
